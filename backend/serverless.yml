@@ -1,0 +1,27 @@
+service: talking-backend
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  role: arn:aws:iam::443177118748:role/talking-app-role
+  httpApi:
+    cors: true
+
+functions:
+  speak:
+    handler: handler.speak
+    events:
+      - http:
+          path: speak
+          method: post
+          cors: true 
+          
+            # origin: 'http://localhost:4200'
+            # headers:
+            #   - Content-Type
+            #   - X-Amz-Date
+            #   - Authorization
+            #   - X-Api-Key
+            #   - X-Amz-Security-Token
+            #   - X-Amz-User-Agent
+            # allowCredentials: true
